@@ -5,10 +5,14 @@ A quick demo for running [TFJS mobilenet model][mobilenet] using
 
 ## Expo
 
-```
-$ cd expo
-$ yarn
-$ yarn start
+```bash
+cd image-classification/expo
+node --version
+npm install -g yarn 
+yarn --version
+yarn
+yarn start
+npx expo start
 ```
 
 Then scan the QR code to open it in the `Expo Go` app.
