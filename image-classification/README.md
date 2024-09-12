@@ -11,7 +11,8 @@ node --version
 npm install -g yarn 
 yarn --version
 yarn
-yarn start
+yarn add expo@51
+npx expo install --fix
 npx expo start
 ```
 
