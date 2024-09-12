@@ -18,12 +18,17 @@ const App = () => {
 
       // Start inference and show result.
       const image = require('./basketball.jpg');
+
+      // convert image array to tensor
       const imageAssetPath = Image.resolveAssetSource(image);
       const response = await fetch(imageAssetPath.uri, {}, { isBinary: true });
       const imageDataArrayBuffer = await response.arrayBuffer();
       const imageData = new Uint8Array(imageDataArrayBuffer);
       const imageTensor = decodeJpeg(imageData);
-      const prediction = await model.classify(imageTensor);
+      const resizedImageTensor = tf.image.resizeBilinear(imageTensor, [224, 224]);
+
+      // make prediction
+      const prediction = await model.classify(resizedImageTensor);
       if (prediction && prediction.length > 0) {
         setResult(
           `${prediction[0].className} (${prediction[0].probability.toFixed(3)})`
